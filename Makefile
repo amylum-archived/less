@@ -22,7 +22,7 @@ NCURSES_TARGET = /tmp/ncurses-install
 PATH_FLAGS = --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
 CONF_FLAGS = --with-regex=pcre
 CFLAGS = -static -static-libgcc -Wl,-static -lc
-LDFLAGS = -L$(NCURSES_TARGET)/usr/lib
+LDFLAGS = -L$(NCURSES_TARGET)/usr/lib -static
 
 .PHONY : default source manual container deps build version push local
 
