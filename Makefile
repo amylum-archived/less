@@ -13,16 +13,16 @@ SOURCE_URL = http://www.greenwoodsoftware.com/$(PACKAGE)/$(PACKAGE)-$(PACKAGE_VE
 SOURCE_PATH = /tmp/source
 SOURCE_TARBALL = /tmp/source.tar.gz
 
-PATH_FLAGS = --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
-CONF_FLAGS = --with-regex=pcre
-CFLAGS = -static -static-libgcc -Wl,-static -lc
-
 NCURSES_VERSION = 6.0
 NCURSES_URL = http://ftp.gnu.org/gnu/ncurses/ncurses-$(NCURSES_VERSION).tar.gz
 NCURSES_TAR = /tmp/ncurses.tar.gz
 NCURSES_DIR = /tmp/ncurses
 NCURSES_TARGET = /tmp/ncurses-install
-NCURSES_PATH = --with-ncurses=$(NCURSES_TARGET)/usr/local
+
+PATH_FLAGS = --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
+CONF_FLAGS = --with-regex=pcre
+CFLAGS = -static -static-libgcc -Wl,-static -lc
+LDFLAGS = -L$(NCURSES_TARGET)/usr/lib
 
 .PHONY : default source manual container deps build version push local
 
@@ -51,7 +51,7 @@ deps:
 build: source deps
 	rm -rf $(BUILD_DIR)
 	cp -R $(SOURCE_PATH) $(BUILD_DIR)
-	cd $(BUILD_DIR) && CC=musl-gcc CFLAGS='$(CFLAGS)' ./configure $(PATH_FLAGS) $(CONF_FLAGS) $(NCURSES_PATH)
+	cd $(BUILD_DIR) && CC=musl-gcc LDFLAGS='$(LDFLAGS)' CFLAGS='$(CFLAGS)' ./configure $(PATH_FLAGS) $(CONF_FLAGS)
 	cd $(BUILD_DIR) && make DESTDIR=$(RELEASE_DIR) install
 	mkdir -p $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)
 	cp $(BUILD_DIR)/COPYING $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)/LICENSE
