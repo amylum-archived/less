@@ -1,7 +1,7 @@
 less
 ==========
 
-[![GPL3 Licensed](http://img.shields.io/badge/license-GPL2+-green.svg)](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3))
+[![GPL3 Licensed](http://img.shields.io/badge/license-GPL3-green.svg)](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3))
 
 Package repo for [less](http://www.greenwoodsoftware.com/less/index.html)
 
