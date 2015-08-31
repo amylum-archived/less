@@ -18,7 +18,7 @@ CONF_FLAGS = --with-regex=pcre
 CFLAGS = -static -static-libgcc -Wl,-static -lc
 
 NCURSES_VERSION = 6.0
-NCURSES_URL = http://invisible-island.net/ncurses/ncurses-$(NCURSES_VERSION).tar.gz
+NCURSES_URL = http://ftp.gnu.org/gnu/ncurses/ncurses-$(NCURSES_VERSION).tar.gz
 NCURSES_TAR = /tmp/ncurses.tar.gz
 NCURSES_DIR = /tmp/ncurses
 NCURSES_TARGET = /tmp/ncurses-install
