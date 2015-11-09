@@ -13,16 +13,15 @@ SOURCE_URL = http://www.greenwoodsoftware.com/$(PACKAGE)/$(PACKAGE)-$(PACKAGE_VE
 SOURCE_PATH = /tmp/source
 SOURCE_TARBALL = /tmp/source.tar.gz
 
-NCURSES_VERSION = 6.0
-NCURSES_URL = http://ftp.gnu.org/gnu/ncurses/ncurses-$(NCURSES_VERSION).tar.gz
-NCURSES_TAR = /tmp/ncurses.tar.gz
-NCURSES_DIR = /tmp/ncurses
-NCURSES_TARGET = /tmp/ncurses-install
-
 PATH_FLAGS = --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
 CONF_FLAGS = --with-regex=pcre
 CFLAGS = -static -static-libgcc -Wl,-static -lc
-LDFLAGS = -L$(NCURSES_TARGET)/usr/lib -static
+
+NCURSES_VERSION = 6.0
+NCURSES_URL = https://github.com/amylum/ncurses/releases/download/$(NCURSES_VERSION)/ncurses.tar.gz
+NCURSES_TAR = /tmp/ncurses.tar.gz
+NCURSES_DIR = /tmp/ncurses
+NCURSES_PATH = -I$(NCURSES_DIR)/usr/include -L$(NCURSES_DIR)/usr/lib
 
 .PHONY : default source manual container deps build version push local
 
@@ -41,17 +40,15 @@ container:
 	./meta/launch
 
 deps:
-	rm -rf $(NCURSES_DIR) $(NCURSES_TAR) $(SSL_DIR) $(SSL_TAR)
-	mkdir $(NCURSES_DIR) $(SSL_DIR)
-
+	rm -rf $(NCURSES_DIR) $(NCURSES_TAR)
+	mkdir $(NCURSES_DIR)
 	curl -sLo $(NCURSES_TAR) $(NCURSES_URL)
-	tar -x -C $(NCURSES_DIR) -f $(NCURSES_TAR) --strip-components=1
-	cd $(NCURSES_DIR) && CC=musl-gcc ./configure && make DESTDIR=$(NCURSES_TARGET) install
+	tar -x -C $(NCURSES_DIR) -f $(NCURSES_TAR)
 
 build: source deps
 	rm -rf $(BUILD_DIR)
 	cp -R $(SOURCE_PATH) $(BUILD_DIR)
-	cd $(BUILD_DIR) && CC=musl-gcc LDFLAGS='$(LDFLAGS)' CFLAGS='$(CFLAGS)' ./configure $(PATH_FLAGS) $(CONF_FLAGS)
+	cd $(BUILD_DIR) && CC=musl-gcc CFLAGS='$(CFLAGS) $(NCURSES_PATH)' ./configure $(PATH_FLAGS) $(CONF_FLAGS)
 	cd $(BUILD_DIR) && make DESTDIR=$(RELEASE_DIR) install
 	mkdir -p $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)
 	cp $(BUILD_DIR)/COPYING $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)/LICENSE
