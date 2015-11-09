@@ -17,7 +17,7 @@ PATH_FLAGS = --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
 CONF_FLAGS = --with-regex=pcre
 CFLAGS = -static -static-libgcc -Wl,-static -lc
 
-NCURSES_VERSION = 6.0_1
+NCURSES_VERSION = 6.0-1
 NCURSES_URL = https://github.com/amylum/ncurses/releases/download/$(NCURSES_VERSION)/ncurses.tar.gz
 NCURSES_TAR = /tmp/ncurses.tar.gz
 NCURSES_DIR = /tmp/ncurses
