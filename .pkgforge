@@ -6,6 +6,7 @@ licenses 'COPYING'
 source(
   type: 'tar',
   url: 'http://www.greenwoodsoftware.com/less/less-481.tar.gz'
+)
 
 deps(
   ncurses: '6.0-2'
