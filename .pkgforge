@@ -1,0 +1,32 @@
+name 'less'
+org 'amylum'
+
+licenses 'COPYING'
+
+source(
+  type: 'tar',
+  url: 'http://www.greenwoodsoftware.com/less/less-481.tar.gz
+
+deps(
+  ncurses: '6.0-2'
+)
+
+configure_flags(
+  prefix: '/usr',
+  sbindir: '/usr/bin',
+  sysconfdir: '/etc'
+  'with-regex': 'pcre'
+)
+
+cflags
+harden
+
+build do
+  configure
+  make
+  install
+end
+
+test do
+  # TODO: add tests
+end
