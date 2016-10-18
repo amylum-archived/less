@@ -23,7 +23,7 @@ cflags
 harden
 
 build do
-  configure
+  configure "LDFLAGS" => "#{@forge.cflags.join(' ')}"
   make
   install
 end
