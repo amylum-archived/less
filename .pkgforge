@@ -14,7 +14,7 @@ deps(
 configure_flags(
   prefix: '/usr',
   sbindir: '/usr/bin',
-  sysconfdir: '/etc'
+  sysconfdir: '/etc',
   'with-regex': 'pcre'
 )
 
