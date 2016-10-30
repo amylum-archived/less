@@ -5,11 +5,11 @@ licenses 'COPYING'
 
 source(
   type: 'tar',
-  url: 'http://www.greenwoodsoftware.com/less/less-481.tar.gz'
+  url: 'http://www.greenwoodsoftware.com/less/less-487.tar.gz'
 )
 
 deps(
-  ncurses: '6.0-2'
+  ncurses: '6.0-3'
 )
 
 configure_flags(
