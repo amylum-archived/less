@@ -9,7 +9,7 @@ source(
 )
 
 deps(
-  ncurses: '6.0-20161126-1'
+  ncurses: '6.0-20161203-1'
 )
 
 configure_flags(
