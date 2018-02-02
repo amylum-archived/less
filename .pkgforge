@@ -14,8 +14,8 @@ source(
 
 deps(
   ncurses: {
-    version: '6.0-20180106-1',
-    checksum: 'dead4635295d3b479e491f2bde8cb11f63e0d94f51e05203bfa42f5cb356ca18'
+    version: '6.1-20180129-1',
+    checksum: 'a8dc2f58cda01b19c4db27f8bf356140bdfbece5ba70bed28346d78133280b7f'
   }
 )
 
