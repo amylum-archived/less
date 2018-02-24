@@ -8,8 +8,8 @@ licenses 'COPYING'
 
 source(
   type: 'tar',
-  url: 'http://www.greenwoodsoftware.com/less/less-487.tar.gz',
-  checksum: 'fbca3df0a2d12912af79c2fb81852ad1b8dde4e452528fce5da9e9baf7c2a79d'
+  url: 'http://www.greenwoodsoftware.com/less/less-530.tar.gz',
+  checksum: '736ae133c01824915a5e74c6482c74e88071fb7084e070e7aac3c701d4406b74'
 )
 
 deps(
